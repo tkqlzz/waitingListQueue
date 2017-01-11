@@ -1,0 +1,48 @@
+#:kivy 1.9.1
+<MyWidget>
+    Label:
+        center_x: root.width / 2
+        top: root.top - 50
+        text: "예약 인원: {}".format( root.number )
+        font_name: "NanumBarunGothicBold.ttf"
+        font_size: 70
+    Button:
+        id: btnInput
+        text: "예약접수"
+        font_name: "NanumBarunGothicBold.ttf"
+        font_size: 20
+        center_x: root.width / 2
+        top: root.top - 250
+        width: 300
+        on_press: root.show_input()
+    Button:
+        id: btnDelete
+        text: "자리 배치"
+        font_name: "NanumBarunGothicBold.ttf"
+        font_size: 20
+        center_x: root.width / 2
+        top: root.top - 400
+        width: 300
+        on_press: root.delete_reservation()
+
+<InputPopup>:
+    title: 'reservation'
+    size_hint: 0.6, 0.4
+    id: inputPopup
+    GridLayout:
+        cols: 2
+        spacing: 3
+        Label:
+            text: "name"
+        TextInput:
+            id: name
+        Label:
+            text: "food"
+        TextInput:
+            id: food
+        Button:
+            text: 'OK'
+            on_press: inputPopup.on_press_OK(name.text, food.text)
+        Button:
+            text: 'Cancel'
+            on_press: inputPopup.on_press_Cancel()
